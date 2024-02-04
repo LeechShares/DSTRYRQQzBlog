@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    {{#each blogs}}
+    <div>
+        <h2>{{title}}</h2>
+        <p>{{content}}</p>
+        <p>Likes: {{likes}}</p>
+        <p>Attachments: {{attachments}}</p>
+        <p>Created At: {{created_at}}</p>
+        <ul>
+            {{#each comments}}
+            <li>{{commenter_name}}: {{comment}}</li>
+            {{/each}}
+        </ul>
+        <form action="/blog/{{id}}/comment" method="post">
+            <input type="text" name="commenterName" placeholder="Your Name">
+            <textarea name="comment" placeholder="Your Comment"></textarea>
+            <button type="submit">Submit Comment</button>
+        </form>
+    </div>
+    {{/each}}
+    <hr>
+    <h2>Create New Blog Post</h2>
+    <form action="/blog/create" method="post">
+        <input type="text" name="title" placeholder="Title">
+        <textarea name="content" placeholder="Content"></textarea>
+        <input type="text" name="attachments" placeholder="Attachments">
+        <button type="submit">Create Post</button>
+    </form>
+</body>
+</html>
